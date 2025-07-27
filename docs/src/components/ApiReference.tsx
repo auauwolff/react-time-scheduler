@@ -61,7 +61,7 @@ function ApiReference() {
             
             <TableRow>
               <TableCell><code>onEventClick</code></TableCell>
-              <TableCell><code>(event: Partial{'<TEvent>'}, date: Date) => void</code></TableCell>
+              <TableCell><code>(event: Partial&lt;TEvent&gt;, date: Date) =&gt; void</code></TableCell>
               <TableCell><Chip label="Yes" size="small" color="error" /></TableCell>
               <TableCell>-</TableCell>
               <TableCell>Callback when event or empty slot is clicked</TableCell>
@@ -146,7 +146,7 @@ function ApiReference() {
             
             <TableRow>
               <TableCell><code>renderResources</code></TableCell>
-              <TableCell><code>(resource: TResource) => JSX.Element</code></TableCell>
+              <TableCell><code>(resource: TResource) =&gt; JSX.Element</code></TableCell>
               <TableCell>Custom resource renderer</TableCell>
             </TableRow>
             
@@ -164,7 +164,7 @@ function ApiReference() {
             
             <TableRow>
               <TableCell><code>renderSideBar</code></TableCell>
-              <TableCell><code>(resource: TResource) => JSX.Element</code></TableCell>
+              <TableCell><code>(resource: TResource) =&gt; JSX.Element</code></TableCell>
               <TableCell>Custom sidebar content for each resource</TableCell>
             </TableRow>
             
@@ -176,7 +176,7 @@ function ApiReference() {
             
             <TableRow>
               <TableCell><code>renderFooterCells</code></TableCell>
-              <TableCell><code>(day: DayInfo | null) => JSX.Element</code></TableCell>
+              <TableCell><code>(day: DayInfo | null) =&gt; JSX.Element</code></TableCell>
               <TableCell>Custom footer cells for each day</TableCell>
             </TableRow>
             
