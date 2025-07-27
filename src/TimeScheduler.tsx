@@ -51,7 +51,7 @@ const DEFAULT_TIME_ZONE = "UTC"; // Default time zone
 
 interface TimeSchedulerProps<
   TResource extends BaseResource = BaseResource,
-  TEvent extends BaseEvent = BaseEvent,
+  TEvent extends BaseEvent = BaseEvent
 > {
   resources: TResource[] | undefined;
   events: TEvent[] | undefined;
@@ -66,7 +66,7 @@ interface TimeSchedulerProps<
   renderSideBar?: (resource: TResource) => JSX.Element;
   showFooter?: boolean;
   renderFooterCells?: (
-    day: { formattedDate: string; date: Date; isToday: boolean } | null,
+    day: { formattedDate: string; date: Date; isToday: boolean } | null
   ) => JSX.Element;
   sideBarFooter?: React.ReactNode;
   contentRef?: RefObject<HTMLDivElement | null>;
@@ -81,7 +81,7 @@ interface TimeSchedulerProps<
 
 const TimeScheduler = <
   TResource extends BaseResource = BaseResource,
-  TEvent extends BaseEvent = BaseEvent,
+  TEvent extends BaseEvent = BaseEvent
 >({
   resources,
   events,
@@ -172,6 +172,7 @@ const TimeScheduler = <
               alignItems: "center",
               justifyContent: "start",
               pl: 1,
+              boxSizing: "border-box",
             }}
           >
             {resourcesHeader || <Typography>Resources</Typography>}
@@ -183,7 +184,7 @@ const TimeScheduler = <
               {renderResources ? (
                 <Box
                   sx={{
-                    p: 1,
+                    px: 1,
                     borderBottom: "1px solid #ddd",
                     borderLeft: "1px solid #ddd",
                     borderRight: "1px solid #ddd",
@@ -191,6 +192,7 @@ const TimeScheduler = <
                     alignItems: "center",
                     justifyContent: "space-between",
                     height: rowHeight,
+                    boxSizing: "border-box",
                   }}
                 >
                   {renderResources(resource)}
@@ -198,7 +200,7 @@ const TimeScheduler = <
               ) : (
                 <Box
                   sx={{
-                    p: 1,
+                    px: 1,
                     borderBottom: "1px solid #ddd",
                     borderLeft: "1px solid #ddd",
                     borderRight: "1px solid #ddd",
@@ -207,6 +209,7 @@ const TimeScheduler = <
                     justifyContent: "space-between",
                     color: resource.color,
                     height: rowHeight,
+                    boxSizing: "border-box",
                   }}
                 >
                   <Typography>{resource.name}</Typography>
@@ -228,6 +231,7 @@ const TimeScheduler = <
                 alignItems: "center",
                 justifyContent: "start",
                 pl: 1,
+                boxSizing: "border-box",
               }}
             >
               <Typography variant="body2">Wages</Typography>
@@ -236,7 +240,7 @@ const TimeScheduler = <
         </Box>
 
         {/* Middle scrollable area (Days + Events + Footer) */}
-        <Box sx={{ overflowX: "auto", width: "100%" }}>
+        <Box sx={{ overflowX: "auto", overflowY: "hidden", width: "100%" }}>
           {/* Days header row */}
           <Box sx={{ display: "flex" }}>
             {timeSchedulerDays.map((day) => (
@@ -259,6 +263,7 @@ const TimeScheduler = <
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
+                  boxSizing: "border-box",
                 }}
               >
                 <Typography
@@ -273,10 +278,7 @@ const TimeScheduler = <
 
           {/* Events Grid */}
           {resources?.map((resources) => (
-            <Box
-              sx={{ display: "flex" }}
-              key={resources.id}
-            >
+            <Box sx={{ display: "flex" }} key={resources.id}>
               {timeSchedulerDays.map((day) => (
                 <Box
                   key={`${resources.id}-${day?.formattedDate}`}
@@ -293,6 +295,7 @@ const TimeScheduler = <
                     },
                     height: rowHeight,
                     position: "relative",
+                    boxSizing: "border-box",
                   }}
                 >
                   {/* Entire cell clickable */}
@@ -312,29 +315,29 @@ const TimeScheduler = <
                       const eventSelected = localEvents?.find(
                         (event) =>
                           event.resourceId === resources.id &&
-                          isSameDay(event.start, day?.date ?? new Date()),
+                          isSameDay(event.start, day?.date ?? new Date())
                       );
 
                       // If an event is found, parse it to the correct format
                       // and pass it to the onEventClick function
                       const parsedEventSelected: Partial<TEvent> = eventSelected
-                        ? {
+                        ? ({
                             ...eventSelected,
                             start: new Date(eventSelected.start).toISOString(),
                             end: new Date(eventSelected.end).toISOString(),
-                          } as Partial<TEvent>
+                          } as Partial<TEvent>)
                         : ({
                             resourceId: resources.id,
                             organizationId: resources.organizationId,
                             start: new Date(
-                              day?.date ?? new Date(),
+                              day?.date ?? new Date()
                             ).toISOString(),
                             end: new Date(
-                              day?.date ?? new Date(),
+                              day?.date ?? new Date()
                             ).toISOString(),
                             title: "",
                             breakMinutes: 30,
-                          } as any) as Partial<TEvent>;
+                          } as any as Partial<TEvent>);
 
                       const dateSlotSelected = day?.date ?? new Date();
 
@@ -346,7 +349,7 @@ const TimeScheduler = <
                       ?.filter(
                         (e) =>
                           e.resourceId === resources.id &&
-                          isSameDay(e.start, day?.date ?? new Date()),
+                          isSameDay(e.start, day?.date ?? new Date())
                       )
                       .map((event) => (
                         <Paper
@@ -401,6 +404,7 @@ const TimeScheduler = <
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
+                    boxSizing: "border-box",
                   }}
                 >
                   {renderFooterCells ? (
@@ -409,7 +413,7 @@ const TimeScheduler = <
                     <Typography variant="body2" fontWeight="medium">
                       {
                         localEvents?.filter((event) =>
-                          isSameDay(event.start, day?.date ?? new Date()),
+                          isSameDay(event.start, day?.date ?? new Date())
                         ).length
                       }
                     </Typography>
@@ -434,6 +438,7 @@ const TimeScheduler = <
                 alignItems: "center",
                 justifyContent: "start",
                 pl: 1,
+                boxSizing: "border-box",
               }}
             >
               {sideBarHeader || <Typography>Side Bar Header</Typography>}
@@ -445,13 +450,14 @@ const TimeScheduler = <
                 {renderSideBar ? (
                   <Box
                     sx={{
-                      p: 1,
+                      px: 1,
                       borderBottom: "1px solid #ddd",
                       borderRight: "1px solid #ddd",
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "space-between",
                       height: rowHeight,
+                      boxSizing: "border-box",
                     }}
                   >
                     {renderSideBar(resource)}
@@ -459,7 +465,7 @@ const TimeScheduler = <
                 ) : (
                   <Box
                     sx={{
-                      p: 1,
+                      px: 1,
                       borderBottom: "1px solid #ddd",
                       borderRight: "1px solid #ddd",
                       display: "flex",
@@ -467,6 +473,7 @@ const TimeScheduler = <
                       justifyContent: "space-between",
                       color: resource.color,
                       height: rowHeight,
+                      boxSizing: "border-box",
                     }}
                   >
                     <Typography>{resource.name}</Typography>
@@ -487,6 +494,7 @@ const TimeScheduler = <
                   alignItems: "center",
                   justifyContent: "start",
                   pl: 1,
+                  boxSizing: "border-box",
                 }}
               >
                 {sideBarFooter || (

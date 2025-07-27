@@ -128,6 +128,7 @@ function AdvancedExample() {
           events={events}
           timeSchedulerDate={currentDate}
           onEventClick={(event, date) => console.log(event, date)}
+          rowHeight={70}
           renderHeader={
             <Box sx={{ mb: 2 }}>
               <Typography variant="h5" gutterBottom>
@@ -153,13 +154,13 @@ function AdvancedExample() {
             </Box>
           }
           renderResources={(resource) => (
-            <Box>
-              <Typography variant="subtitle2">{resource.name}</Typography>
+            <Box sx={{ overflow: 'hidden', height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+              <Typography variant="subtitle2" sx={{ lineHeight: 1.2 }}>{resource.name}</Typography>
               <Stack direction="row" spacing={1}>
-                <Typography variant="caption" color="text.secondary">
+                <Typography variant="caption" color="text.secondary" sx={{ lineHeight: 1 }}>
                   {resource.department}
                 </Typography>
-                <Typography variant="caption" color="text.secondary">
+                <Typography variant="caption" color="text.secondary" sx={{ lineHeight: 1 }}>
                   ${resource.hourlyRate}/hr
                 </Typography>
               </Stack>
@@ -178,9 +179,9 @@ function AdvancedExample() {
               }, 0);
 
             return (
-              <Box sx={{ textAlign: 'center' }}>
-                <Typography variant="h6">{weeklyHours}h</Typography>
-                <Typography variant="caption" color="text.secondary">
+              <Box sx={{ textAlign: 'center', overflow: 'hidden', height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+                <Typography variant="h6" sx={{ lineHeight: 1 }}>{weeklyHours}h</Typography>
+                <Typography variant="caption" color="text.secondary" sx={{ lineHeight: 1 }}>
                   ${(weeklyHours * resource.hourlyRate).toFixed(0)}
                 </Typography>
               </Box>
