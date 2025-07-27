@@ -1,5 +1,5 @@
 {
-  "name": "react-time-scheduler",
+  "name": "@auauwolff/react-time-scheduler",
   "version": "0.1.0",
   "description": "A flexible and customizable React scheduler component for resource-based time management",
   "author": "auauwolff",
