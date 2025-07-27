@@ -1,5 +1,8 @@
 {
   "name": "@auauwolff/react-time-scheduler",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
   "version": "0.1.0",
   "description": "A flexible and customizable React scheduler component for resource-based time management",
   "author": "auauwolff",
@@ -23,7 +26,8 @@
     "preview": "vite preview",
     "type-check": "tsc --noEmit",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "prepublishOnly": "pnpm run build"
+    "prepublishOnly": "pnpm run build",
+    "prepare": "pnpm run build"
   },
   "peerDependencies": {
     "react": "^18.0.0 || ^19.0.0",
