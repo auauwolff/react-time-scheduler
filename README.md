@@ -200,8 +200,42 @@ Check out the [examples](./examples) directory for more detailed examples:
 
 ## Contributing
 
-Contributions are welcome! Please feel free to submit a Pull Request.
+We love contributions! Please see our [Contributing Guide](CONTRIBUTING.md) for details on how to get started.
+
+### Quick Start for Contributors
+
+```bash
+# Fork and clone the repo
+git clone https://github.com/YOUR_USERNAME/react-time-scheduler.git
+cd react-time-scheduler
+
+# Install dependencies
+pnpm install
+
+# Start development
+pnpm run dev
+```
+
+### Ways to Contribute
+
+- 🐛 [Report bugs](https://github.com/auauwolff/react-time-scheduler/issues/new?template=bug_report.md)
+- 💡 [Request features](https://github.com/auauwolff/react-time-scheduler/issues/new?template=feature_request.md)
+- 📝 Improve documentation
+- 🔧 Submit pull requests
+
+## Support
+
+- 📧 Contact: [your-email@example.com]
+- 💬 [Open an issue](https://github.com/auauwolff/react-time-scheduler/issues)
+- 📖 [Read the docs](https://github.com/auauwolff/react-time-scheduler#readme)
+
+## Contributors
+
+Thanks to all our contributors!
+
+<!-- ALL-CONTRIBUTORS-LIST:START -->
+<!-- ALL-CONTRIBUTORS-LIST:END -->
 
 ## License
 
-MIT © [Your Name]
+MIT © auauwolff
