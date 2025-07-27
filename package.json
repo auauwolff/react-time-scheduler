@@ -28,7 +28,10 @@
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "prepublishOnly": "pnpm run build",
     "prepare": "pnpm run build",
-    "release": "./scripts/release.sh"
+    "release": "./scripts/release.sh",
+    "docs:dev": "cd docs && npm run dev",
+    "docs:build": "cd docs && npm run build",
+    "docs:preview": "cd docs && npm run preview"
   },
   "peerDependencies": {
     "react": "^18.0.0 || ^19.0.0",

@@ -189,14 +189,24 @@ const theme = createTheme({
 </ThemeProvider>
 ```
 
+## Documentation
+
+📖 **[View Live Documentation](https://auauwolff.github.io/react-time-scheduler/)**
+
+The documentation includes:
+- Interactive examples
+- API reference
+- Live playground
+- Advanced usage patterns
+
 ## Examples
 
-Check out the [examples](./examples) directory for more detailed examples:
+Check out the [documentation site](https://auauwolff.github.io/react-time-scheduler/) for live examples:
 
 - Basic usage
 - Custom styling
-- Advanced features
-- Integration with state management
+- Interactive demo with CRUD operations
+- Advanced features (cost calculations, custom types)
 
 ## Contributing
 
@@ -214,6 +224,9 @@ pnpm install
 
 # Start development
 pnpm run dev
+
+# Run documentation locally
+pnpm run docs:dev
 ```
 
 ### Ways to Contribute
