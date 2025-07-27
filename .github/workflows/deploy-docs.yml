@@ -27,13 +27,13 @@ jobs:
           node-version: 20
           
       - name: Install dependencies (root)
-        run: npm ci
+        run: npm install
         
       - name: Build package
         run: npm run build
         
       - name: Install dependencies (docs)
-        run: npm ci
+        run: npm install
         working-directory: ./docs
         
       - name: Build documentation
