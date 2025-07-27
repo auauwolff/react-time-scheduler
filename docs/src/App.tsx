@@ -9,7 +9,6 @@ import {
   Toolbar,
   Button,
   IconButton,
-  useTheme,
   Paper,
   Chip,
 } from '@mui/material';
