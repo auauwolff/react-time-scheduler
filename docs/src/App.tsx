@@ -50,7 +50,6 @@ function TabPanel(props: TabPanelProps) {
 
 function App() {
   const [tabValue, setTabValue] = useState(0);
-  const theme = useTheme();
 
   const handleTabChange = (_event: React.SyntheticEvent, newValue: number) => {
     setTabValue(newValue);

@@ -13,7 +13,12 @@ import {
 import PersonIcon from '@mui/icons-material/Person';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 
-const resources: BaseResource[] = [
+interface ExtendedResource extends BaseResource {
+  role: string;
+  avatar: string;
+}
+
+const resources: ExtendedResource[] = [
   {
     id: '1',
     name: 'Dr. Sarah Johnson',
@@ -84,7 +89,7 @@ function CustomStylingExample() {
       </Typography>
 
       <Paper variant="outlined" sx={{ p: 2, mb: 3 }}>
-        <TimeScheduler
+        <TimeScheduler<ExtendedResource, BaseEvent>
           resources={resources}
           events={events}
           timeSchedulerDate={currentDate}

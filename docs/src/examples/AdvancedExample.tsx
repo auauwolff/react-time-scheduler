@@ -73,7 +73,7 @@ const events: ExtendedEvent[] = [
     resourceId: '3',
     title: 'Holiday Coverage',
     start: new Date(new Date().setDate(new Date().getDate() + 1)).toISOString(),
-    end: new Date(new Date().setDate(new Date().getDate() + 1)).setHours(new Date().getHours() + 8).toISOString(),
+    end: new Date(new Date(new Date().setDate(new Date().getDate() + 1)).setHours(new Date().getHours() + 8)).toISOString(),
     type: 'holiday',
   },
 ];
@@ -110,11 +110,6 @@ function AdvancedExample() {
     return total;
   };
 
-  const getEventColor = (event: ExtendedEvent, resource: ExtendedResource) => {
-    if (event.type === 'overtime') return '#ff9800';
-    if (event.type === 'holiday') return '#f44336';
-    return resource.color;
-  };
 
   return (
     <Box>
