@@ -27,7 +27,7 @@ jobs:
           node-version: 20
           
       - name: Install dependencies (root)
-        run: npm install
+        run: npm install --ignore-scripts
         
       - name: Build package
         run: npm run build
