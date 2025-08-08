@@ -362,7 +362,7 @@ const TimeScheduler = <
                             inset: 10,
                             bgcolor: resources.color,
                             p: 1,
-                            overflow: "hidden",
+                            overflow: "visible", // Changed to visible to allow badge to stick out
                             display: "flex",
                             alignItems: "center",
                             justifyContent: "center",
@@ -378,15 +378,29 @@ const TimeScheduler = <
                         >
                           {event.title}
                           {showNotesBadge && event.notes && (
-                            <StickyNote2
+                            <Box
                               sx={{
                                 position: "absolute",
-                                top: 4,
-                                right: 4,
-                                fontSize: 16,
-                                opacity: 0.9,
+                                top: -8,
+                                right: -8,
+                                width: 20,
+                                height: 20,
+                                borderRadius: "50%",
+                                bgcolor: "#ff9800",
+                                display: "flex",
+                                alignItems: "center",
+                                justifyContent: "center",
+                                boxShadow: "0 2px 4px rgba(0,0,0,0.2)",
+                                border: "2px solid white",
                               }}
-                            />
+                            >
+                              <StickyNote2
+                                sx={{
+                                  fontSize: 12,
+                                  color: "white",
+                                }}
+                              />
+                            </Box>
                           )}
                         </Paper>
                       ))}
