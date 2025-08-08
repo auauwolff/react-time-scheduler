@@ -22,6 +22,7 @@ import BasicExample from './examples/BasicExample';
 import CustomStylingExample from './examples/CustomStylingExample';
 import InteractiveExample from './examples/InteractiveExample';
 import AdvancedExample from './examples/AdvancedExample';
+import NotesBadgeExample from './examples/NotesBadgeExample';
 import Installation from './components/Installation';
 import ApiReference from './components/ApiReference';
 
@@ -110,6 +111,7 @@ function App() {
           >
             <Tab label="Installation" icon={<CodeIcon />} iconPosition="start" />
             <Tab label="Basic Example" icon={<PlayArrowIcon />} iconPosition="start" />
+            <Tab label="Notes Badge" />
             <Tab label="Custom Styling" />
             <Tab label="Interactive Demo" />
             <Tab label="Advanced Features" />
@@ -125,18 +127,22 @@ function App() {
           </TabPanel>
 
           <TabPanel value={tabValue} index={2}>
-            <CustomStylingExample />
+            <NotesBadgeExample />
           </TabPanel>
 
           <TabPanel value={tabValue} index={3}>
-            <InteractiveExample />
+            <CustomStylingExample />
           </TabPanel>
 
           <TabPanel value={tabValue} index={4}>
-            <AdvancedExample />
+            <InteractiveExample />
           </TabPanel>
 
           <TabPanel value={tabValue} index={5}>
+            <AdvancedExample />
+          </TabPanel>
+
+          <TabPanel value={tabValue} index={6}>
             <ApiReference />
           </TabPanel>
         </Paper>

@@ -114,6 +114,14 @@ function ApiReference() {
               <TableCell>30</TableCell>
               <TableCell>Height of header rows (px)</TableCell>
             </TableRow>
+            
+            <TableRow>
+              <TableCell><code>showNotesBadge</code></TableCell>
+              <TableCell><code>boolean</code></TableCell>
+              <TableCell><Chip label="No" size="small" /></TableCell>
+              <TableCell>true</TableCell>
+              <TableCell>Show badge indicator on events with notes</TableCell>
+            </TableRow>
           </TableBody>
         </Table>
       </TableContainer>

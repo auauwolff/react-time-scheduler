@@ -29,7 +29,7 @@ pnpm add react-time-scheduler
 Make sure you have the following peer dependencies installed:
 
 ```bash
-npm install react react-dom @mui/material @emotion/react @emotion/styled date-fns date-fns-tz
+npm install react react-dom @mui/material @mui/icons-material @emotion/react @emotion/styled date-fns date-fns-tz
 ```
 
 ## Quick Start
@@ -99,6 +99,7 @@ function App() {
 | `renderSideBar` | `(resource: TResource) => JSX.Element` | No | - | Custom sidebar content |
 | `showFooter` | `boolean` | No | `false` | Show footer |
 | `renderFooterCells` | `(day) => JSX.Element` | No | - | Custom footer cells |
+| `showNotesBadge` | `boolean` | No | `true` | Show badge indicator on events with notes |
 
 ## Data Types
 
@@ -194,6 +195,7 @@ const theme = createTheme({
 📖 **[View Live Documentation](https://auauwolff.github.io/react-time-scheduler/)**
 
 The documentation includes:
+
 - Interactive examples
 - API reference
 - Live playground

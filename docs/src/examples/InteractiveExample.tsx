@@ -29,6 +29,7 @@ import { addWeeks, subWeeks, format, addHours } from 'date-fns';
 function InteractiveExample() {
   const [currentDate, setCurrentDate] = useState(new Date());
   const [showSideBar, setShowSideBar] = useState(true);
+  const [showNotesBadge, setShowNotesBadge] = useState(true);
   const [timezone, setTimezone] = useState('America/New_York');
   
   const [resources, setResources] = useState<BaseResource[]>([
@@ -36,7 +37,24 @@ function InteractiveExample() {
     { id: '2', name: 'Resource 2', color: '#f44336' },
   ]);
   
-  const [events, setEvents] = useState<BaseEvent[]>([]);
+  const [events, setEvents] = useState<BaseEvent[]>([
+    {
+      id: 'demo-1',
+      resourceId: '1',
+      title: 'Meeting with Client',
+      start: new Date().toISOString(),
+      end: new Date(new Date().setHours(new Date().getHours() + 2)).toISOString(),
+      notes: 'Discuss project requirements and timeline. Bring presentation materials.',
+    },
+    {
+      id: 'demo-2',
+      resourceId: '2',
+      title: 'Development Sprint',
+      start: new Date(new Date().setHours(new Date().getHours() + 3)).toISOString(),
+      end: new Date(new Date().setHours(new Date().getHours() + 7)).toISOString(),
+      notes: 'Focus on implementing the new authentication system.',
+    },
+  ]);
   const [dialogOpen, setDialogOpen] = useState(false);
   const [selectedEvent, setSelectedEvent] = useState<Partial<BaseEvent> | null>(null);
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
@@ -46,6 +64,7 @@ function InteractiveExample() {
   const [eventTitle, setEventTitle] = useState('');
   const [eventResourceId, setEventResourceId] = useState('');
   const [eventDuration, setEventDuration] = useState(8);
+  const [eventNotes, setEventNotes] = useState('');
 
   const handleEventClick = (event: Partial<BaseEvent>, date: Date) => {
     if (event.id) {
@@ -53,6 +72,7 @@ function InteractiveExample() {
       setSelectedEvent(event);
       setEventTitle(event.title || '');
       setEventResourceId(event.resourceId || '');
+      setEventNotes(event.notes || '');
       const duration = event.start && event.end
         ? (new Date(event.end).getTime() - new Date(event.start).getTime()) / (1000 * 60 * 60)
         : 8;
@@ -63,6 +83,7 @@ function InteractiveExample() {
       setEventTitle('');
       setEventResourceId(event.resourceId || '');
       setEventDuration(8);
+      setEventNotes('');
     }
     setSelectedDate(date);
     setDialogOpen(true);
@@ -84,6 +105,7 @@ function InteractiveExample() {
               resourceId: eventResourceId,
               start: startDate.toISOString(),
               end: endDate.toISOString(),
+              notes: eventNotes,
             }
           : e
       ));
@@ -96,6 +118,7 @@ function InteractiveExample() {
         title: eventTitle,
         start: startDate.toISOString(),
         end: endDate.toISOString(),
+        notes: eventNotes,
       };
       setEvents([...events, newEvent]);
       setSnackbar({ open: true, message: 'Event created successfully!' });
@@ -118,6 +141,7 @@ function InteractiveExample() {
     setEventTitle('');
     setEventResourceId('');
     setEventDuration(8);
+    setEventNotes('');
     setSelectedEvent(null);
     setSelectedDate(null);
   };
@@ -191,6 +215,16 @@ function InteractiveExample() {
             label="Sidebar"
           />
 
+          <FormControlLabel
+            control={
+              <Switch
+                checked={showNotesBadge}
+                onChange={(e) => setShowNotesBadge(e.target.checked)}
+              />
+            }
+            label="Notes Badge"
+          />
+
           <Button
             variant="outlined"
             startIcon={<AddIcon />}
@@ -207,6 +241,7 @@ function InteractiveExample() {
           onEventClick={handleEventClick}
           timezone={timezone}
           showSideBar={showSideBar}
+          showNotesBadge={showNotesBadge}
           sideBarHeader={
             <Typography variant="subtitle2">Total Events</Typography>
           }
@@ -255,6 +290,16 @@ function InteractiveExample() {
               value={eventDuration}
               onChange={(e) => setEventDuration(Number(e.target.value))}
               inputProps={{ min: 1, max: 24 }}
+            />
+
+            <TextField
+              label="Notes (optional)"
+              fullWidth
+              multiline
+              rows={2}
+              value={eventNotes}
+              onChange={(e) => setEventNotes(e.target.value)}
+              placeholder="Add any additional notes..."
             />
 
             {selectedDate && (
@@ -308,6 +353,7 @@ function InteractiveExample() {
         <Chip label="Add new resources dynamically" size="small" />
         <Chip label="Change timezone" size="small" />
         <Chip label="Toggle sidebar" size="small" />
+        <Chip label="Show notes badges on events" size="small" />
       </Stack>
     </Box>
   );

@@ -2,6 +2,7 @@ import { Paper, Typography, Box, LinearProgress } from "@mui/material";
 import React, { JSX, RefObject } from "react";
 import { addDays, format, isSameDay, startOfWeek } from "date-fns";
 import { toZonedTime } from "date-fns-tz";
+import { StickyNote2 } from "@mui/icons-material";
 
 // Required interfaces for resources and events
 export interface BaseResource {
@@ -77,6 +78,7 @@ interface TimeSchedulerProps<
   rowHeight?: number;
   colWidth?: number;
   headerHeight?: number;
+  showNotesBadge?: boolean;
 }
 
 const TimeScheduler = <
@@ -105,6 +107,7 @@ const TimeScheduler = <
   rowHeight = DEFAULT_ROW_HEIGHT,
   colWidth = DEFAULT_COL_WIDTH,
   headerHeight = DEFAULT_HEADER_HEIGHT,
+  showNotesBadge = true,
 }: TimeSchedulerProps<TResource, TEvent>) => {
   // Convert all event dates to local time zone
   const localEvents = events?.map((event) => ({
@@ -337,7 +340,7 @@ const TimeScheduler = <
                             ).toISOString(),
                             title: "",
                             breakMinutes: 30,
-                          } as any as Partial<TEvent>);
+                          } as Partial<TEvent>);
 
                       const dateSlotSelected = day?.date ?? new Date();
 
@@ -374,6 +377,17 @@ const TimeScheduler = <
                           }}
                         >
                           {event.title}
+                          {showNotesBadge && event.notes && (
+                            <StickyNote2
+                              sx={{
+                                position: "absolute",
+                                top: 4,
+                                right: 4,
+                                fontSize: 16,
+                                opacity: 0.9,
+                              }}
+                            />
+                          )}
                         </Paper>
                       ))}
                   </Box>
