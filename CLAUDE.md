@@ -22,6 +22,19 @@ React Time Scheduler is a TypeScript-based React library for resource-based time
 - `npm run prepublishOnly` - Automatically runs build before publishing
 - Publishing happens to GitHub Package Registry (@auauwolff scope)
 
+#### Release Process
+1. Ensure all changes are committed: `git status`
+2. Run release script: `npm run release`
+   - Select version type (patch/minor/major)
+   - Enter changelog description
+3. Push to GitHub: `git push origin main && git push origin <tag>`
+4. Update in consuming projects (e.g., clocker-convex):
+   ```bash
+   pnpm remove @auauwolff/react-time-scheduler
+   pnpm add github:auauwolff/react-time-scheduler#v<version>
+   ```
+5. If new peer dependencies were added, install them in consuming projects
+
 ### Documentation
 - `npm run docs:dev` - Start documentation site in development mode
 - `npm run docs:build` - Build documentation site for production
@@ -47,6 +60,7 @@ The component is generic and allows extension of these base types for custom imp
 
 ### Key Dependencies
 - **UI Framework**: Material-UI v5-7 (peer dependency)
+- **Icons**: @mui/icons-material v5-7 (peer dependency)
 - **Date Handling**: date-fns v2-4 and date-fns-tz for timezone support
 - **Styling**: Emotion for CSS-in-JS (required by Material-UI)
 
@@ -55,6 +69,7 @@ The TimeScheduler component uses a flexible props system with:
 - Required props: resources, events, timeSchedulerDate, onEventClick
 - Optional customization: Custom renderers for headers, resources, sidebar, footer
 - Configuration: Timezone, week start day, dimensions (rowHeight, colWidth)
+- Features: showNotesBadge (default: true) - displays indicator on events with notes
 
 ## Code Conventions
 
